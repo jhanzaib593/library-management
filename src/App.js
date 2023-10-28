@@ -1,16 +1,36 @@
 import "./App.css";
-import Header from "./commpunter/Header";
 import { ConfigProvider } from "antd";
-import Login from "./pages/login";
+import Layout from "./commpunter/layout";
 import Signin from "./pages/signin";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import * as React from "react";
+import Home from "./pages/home";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element:  <Layout/>,
+    children:[
+      {
+        path: "/",
+        element:  <Home />,
+      },{
+        path: "/sign",
+        element:  <Signin />,
+      },
+
+    ]
+
+  },
+
+]);
 
 function App() {
   return (
     <div className="wappers">
-      <ConfigProvider theme={{ token: { colorPrimary: "#00b96b" } }}>
-        <Header />
-        <Signin />
-
+      <ConfigProvider>
+       
+          <RouterProvider router={router} />
       </ConfigProvider>
     </div>
   );

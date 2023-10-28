@@ -14,8 +14,8 @@ import {
 const { Option } = Select;
 const residences = [
   {
-    value: "zhejiang",
-    label: "Zhejiang",
+    value: "Pakistan ",
+    label: "Pakistan ",
     children: [
       {
         value: "hangzhou",
@@ -126,7 +126,7 @@ const Signin = () => {
       name="register"
       onFinish={onFinish}
       initialValues={{
-        residence: ["zhejiang", "hangzhou", "xihu"],
+        residence: ["Pakistan ", "hangzhou", "xihu"],
         prefix: "92",
       }}
       style={{
