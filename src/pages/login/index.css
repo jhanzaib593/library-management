@@ -1,0 +1,19 @@
+form{
+    margin: auto !important;
+    box-shadow: 0px 1px 11px 1px gray;
+    border-radius: 10px;
+    background-color:white;
+    
+}
+form h1{
+    padding: 1em 0;
+}
+.login{
+    padding: 1em 0 5em 0;
+    /* background-image: url(https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&q=80&w=1528&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    
+    background-repeat: no-repeat;
+    background-position: center;
+    background-origin: content-box;
+    background-size:cover; */
+}
