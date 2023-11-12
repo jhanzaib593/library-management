@@ -1,0 +1,13 @@
+.nav-link-wrapper{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.nav-link {
+    text-decoration: none;
+}
+.nav-active{
+    color: blue;
+    font-weight: 600;
+    border-bottom: 1px solid gray;
+}

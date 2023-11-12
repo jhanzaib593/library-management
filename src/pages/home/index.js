@@ -1,11 +1,11 @@
 import Login from "./Login";
 import Home from "./Books";
+import { useSelector } from "react-redux";
+// import Navbarheader from "../../commpunter/Navbar/";
 
-const home = ()=>{
-    const user = {
-        name:"jhanzaib",
-        email:"jhanzaib593@gmail.com"
-    }
+
+const Homepage = ()=>{
+    const user = useSelector((s)=>s.user);
     return (
         <div>
             {
@@ -15,4 +15,4 @@ const home = ()=>{
         );
 };
 
-export default home
+export default Homepage
