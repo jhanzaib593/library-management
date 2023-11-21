@@ -1,10 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./index.css";
 import { Button, Col, Row } from "antd";
+import { Bookdelete } from "../../../../store/librarySlice";
 
-const Showbook = () => {
+const Showbook = (prop) => {
+  const dispatch = useDispatch();
+  const detete = (useId) => {
+    dispatch(Bookdelete(useId));
+  };
   const booklist = useSelector((s) => s.book);
-  console.log(booklist);
+
   return (
     <div>
       {booklist.map((t) => {
@@ -15,10 +20,23 @@ const Showbook = () => {
                 <p>{t.name}</p>
                 <p>Author: {t.author}</p>
                 <p>Shelve: {t.shelve}</p>
+                <p>id: {t.id}</p>
               </Col>
               <Col span={6} className="bool-col">
-                <Button>Edit</Button>
-                <Button>Delete</Button>
+                <Button
+                  onClick={() => {
+                    prop.editBook(t);
+                  }}
+                >
+                  Edit
+                </Button>
+                <Button
+                  onClick={() => {
+                    detete(t.id);
+                  }}
+                >
+                  Delete
+                </Button>
               </Col>
             </Row>
           </div>

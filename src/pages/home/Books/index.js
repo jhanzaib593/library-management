@@ -3,28 +3,39 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import "./index.css";
 import { useDispatch } from "react-redux";
-import { showBook } from "../../../store/librarySlice";
+import { Bookedit, showBook } from "../../../store/librarySlice";
 import Showbook from "./Showbook";
 
 const Books = () => {
   const dispatch = useDispatch();
 
   const [visible, setVisible] = useState(false);
+  const [editBooks, setEditBook] = useState("");
   const [form] = Form.useForm();
 
   const showModal = () => {
     setVisible(true);
   };
 
-  const handleSubmit = (values) => {
-    dispatch(showBook(values));
+  const onFinish = (values) => {
+    if (editBooks) {
+      const update = {
+        ...values,
+        id: editBooks,
+      };
+      dispatch(Bookedit(update));
+    } else {
+      dispatch(showBook(values));
+    }
     setVisible(false);
     form.resetFields();
+    setEditBook("");
   };
 
   const handleCancel = () => {
     setVisible(false);
     form.resetFields();
+    setEditBook("");
   };
 
   return (
@@ -41,9 +52,21 @@ const Books = () => {
           </Link>
         </Col>
       </Row>
+
       <div className="wapper">
-        <Showbook />
+        <Showbook
+          editBook={(book) => {
+            setEditBook(book.id);
+            setVisible(true);
+            form.setFieldsValue({
+              name: book.name,
+              author: book.author,
+              shelve: book.shelve,
+            });
+          }}
+        />
       </div>
+
       <Modal
         title="Add Book"
         open={visible}
@@ -54,7 +77,7 @@ const Books = () => {
         <Form
           layout="vertical"
           form={form}
-          onFinish={handleSubmit}
+          onFinish={onFinish}
           className="add-form"
         >
           <Form.Item
@@ -81,6 +104,11 @@ const Books = () => {
           >
             <Input />
           </Form.Item>
+          {/* <Form.Item label="Select">
+            <Select placeholder="Please input your Shelve">
+              <Select.Option value="demo">Demo</Select.Option>
+            </Select>
+          </Form.Item> */}
           <Form.Item
             label="Shelve"
             name="shelve"
@@ -99,7 +127,7 @@ const Books = () => {
             </Button>
             ,
             <Button type="primary" htmlType="submit">
-              Submit
+              {editBooks ? "update" : "Submit"}
             </Button>
           </Form.Item>
         </Form>
